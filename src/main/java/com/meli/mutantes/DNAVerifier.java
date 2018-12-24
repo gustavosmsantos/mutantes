@@ -1,6 +1,6 @@
 package com.meli.mutantes;
 
-import java.util.stream.Stream;
+import java.util.*;
 
 public class DNAVerifier {
 
@@ -8,24 +8,11 @@ public class DNAVerifier {
 
     boolean isMutant(String[] dna) {
 
-        String[] horizontalSequences = dna.clone();
-        String[] verticalSequences = getVerticalSequences(dna);
+        List<String> combinedPossibilities = new ArrayList<>();
 
-        return Stream.concat(Stream.of(horizontalSequences), Stream.of(verticalSequences))
-                .map(this::countSequences)
-                .reduce(0, (p, a) -> p + a) > 1;
-    }
-
-    private String[] getVerticalSequences(String[] dna) {
-        String[] sequences = new String[dna.length];
-        for (int i = 0;  i < dna.length; i++) {
-            char[] chars = new char[dna.length];
-            for (int j = 0; j < dna.length; j++) {
-                chars[j] = dna[j].charAt(i);
-            }
-            sequences[i] = String.valueOf(chars);
-        }
-        return sequences;
+        return combinedPossibilities.stream()
+                .mapToInt(this::countSequences)
+                .sum() > 1;
     }
 
     private int countSequences(String line) {
@@ -47,6 +34,55 @@ public class DNAVerifier {
             }
         }
         return sequencesFound;
+    }
+
+    private String[] allPossibilities(String[] dna) {
+
+        String[] verticals = new String[dna.length];
+        String[] diagonalLTR = new String[dna.length * 2 + 1];
+
+        Map<Integer, String> mainDiagonal = new HashMap<>();
+        Map<Integer, String> secondaryDiagonal = new HashMap<>();
+
+        for (int i = 0; i < dna.length; i++) {
+
+            char[] verticalSequence = new char[dna.length];
+
+            for (int j = 0; j < dna.length; j++) {
+                //vertical
+                verticalSequence[j] = dna[j].charAt(i);
+
+                //main diagonal
+                mainDiagonal.put(j-i, mainDiagonal.getOrDefault(j-i, "")
+                        .concat(Character.toString(dna[i].charAt(j))));
+
+                //secondary diagonal
+                if (j == i) {
+                    int position = i;
+                    if (i % 2 != 0) {
+                        position = i + 1;
+                    }
+                    //TODO should put in the middle
+                    secondaryDiagonal.put(position, Character.toString(dna[i].charAt(j)).concat(
+                            secondaryDiagonal.getOrDefault(position, "")));
+                } else if (j > i) {
+                    secondaryDiagonal.put(j-i, Character.toString(dna[i].charAt(j)).concat(
+                            secondaryDiagonal.getOrDefault(j-i, "")));
+                } else {
+                    secondaryDiagonal.put(i-j, Character.toString(dna[i].charAt(j)).concat(
+                            secondaryDiagonal.getOrDefault(i-j, "")));
+                }
+
+            }
+            verticals[i] = Arrays.toString(verticalSequence);
+        }
+
+        return secondaryDiagonal.values().toArray(new String[0]);
+    }
+
+    public static void main(String[] args) {
+        String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
+        System.out.println(Arrays.toString(new DNAVerifier().allPossibilities(dna)));
     }
 
 }
