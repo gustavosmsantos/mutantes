@@ -70,9 +70,4 @@ public class DNAVerifier {
         return possibilities;
     }
 
-    public static void main(String[] args) {
-        String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
-        System.out.println(new DNAVerifier().allPossibilities(dna));
-    }
-
 }
