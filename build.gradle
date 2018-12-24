@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'jacoco'
 }
 
 repositories {
@@ -8,10 +9,30 @@ repositories {
 }
 
 dependencies {
-
     testCompile 'org.codehaus.groovy:groovy-all:2.5.4'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.5'
-
-
     testCompile 'junit:junit:4.12'
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
+test.doLast {
+    jacocoTestReport.generate()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacocoTest")
+    }
 }
