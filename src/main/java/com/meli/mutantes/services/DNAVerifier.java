@@ -1,4 +1,6 @@
-package com.meli.mutantes;
+package com.meli.mutantes.services;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,11 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class DNAVerifier {
 
     private static final Integer MUTANT_SEQUENCE_LENGTH = 4;
 
-    boolean isMutant(String[] dna) {
+    public boolean isMutant(String[] dna) {
         List<String> possibilities = this.allPossibilities(dna);
         return possibilities.stream()
                 .filter(s -> s.length() >= MUTANT_SEQUENCE_LENGTH)

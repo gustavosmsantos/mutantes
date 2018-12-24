@@ -1,4 +1,4 @@
-package com.meli.mutantes
+package com.meli.mutantes.services
 
 import org.junit.Test
 import spock.lang.Specification
