@@ -14,11 +14,27 @@ public class DNAVerifier {
     private static final Integer MUTANT_SEQUENCE_LENGTH = 4;
 
     public boolean isMutant(String[] dna) {
+
+        if (!inputValidated(dna)) {
+            throw new IllegalArgumentException("Input should be a matrix with NxN dimension.");
+        }
+
         List<String> possibilities = this.allPossibilities(dna);
         return possibilities.stream()
                 .filter(s -> s.length() >= MUTANT_SEQUENCE_LENGTH)
                 .mapToInt(this::countSequences)
                 .sum() > 1;
+    }
+
+    private boolean inputValidated(String[] dna) {
+        if (dna == null) {
+            return false;
+        }
+        int length = dna.length;
+        if (length < MUTANT_SEQUENCE_LENGTH) {
+            return false;
+        }
+        return !Arrays.stream(dna).anyMatch(s -> s.length() != length);
     }
 
     private int countSequences(String line) {

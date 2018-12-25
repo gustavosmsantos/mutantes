@@ -119,6 +119,26 @@ class DnaVerifierTest extends Specification {
         !dnaVerifier.isMutant(getDnaArray(dna))
     }
 
+    @Test
+    void "Test invalid inputs"() {
+
+        when:
+        dnaVerifier.isMutant((String[])dna)
+
+        then:
+        def ex = thrown(IllegalArgumentException)
+        ex.message == "Input should be a matrix with NxN dimension."
+
+        where:
+        dna                               | _
+        null                              | _
+        ["ATC", "AGC", "CGT"]             | _
+        ["ATCG", "AGCA", "CGTC"]          | _
+        ["ATCG", "AGCA", "CGC", "CGTC"]   | _
+        ["ATCG", "AGCAA", "CGTC", "CGTC"] | _
+
+    }
+
     static String[] getDnaArray(List<List<String>> dna) {
         dna.collect { it.join("") }.toArray(new String[0])
     }
