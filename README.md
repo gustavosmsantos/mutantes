@@ -21,3 +21,25 @@ inicializa o serviço na porta 8080.
 
     Response:
     200 (OK)
+
+- \[GET\] `/stats`: Retorna dados estatísticos com a proporção entre mutantes e humanos
+
+    Exemplo de response:
+
+    ```javascript
+        {
+            “count_mutant_dna”:40,
+            “count_human_dna”:100,
+            “ratio”:0.4
+        }
+    ```
+
+    200 (OK)
+
+# Testes
+
+A execução dos testes automatizados pode ser feita através do comando `./gradlew test`, e um relatório de code coverage é automaticamente gerado no path `build/reports/jacocoTest`
+
+# Notas
+
+- A aplicação está utilizando uma base em memória (h2) e a engine de cache básica do spring. Em uma aplicação real soluções mais robustas seriam utilizadas.

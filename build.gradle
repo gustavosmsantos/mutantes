@@ -18,6 +18,8 @@ dependencyManagement {
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    compile group: 'com.h2database', name: 'h2'
 
     testCompile 'org.codehaus.groovy:groovy-all:2.5.4'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.5'

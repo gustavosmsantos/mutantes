@@ -1,6 +1,7 @@
 package com.meli.mutantes.controller
 
 import com.meli.mutantes.controller.model.DnaVerificationRequest
+import com.meli.mutantes.repository.DnaTypeRepository
 import com.meli.mutantes.services.DNAVerifier
 import org.junit.Test
 import org.springframework.http.HttpStatus
@@ -10,7 +11,9 @@ class DnaVerificationControllerSpockTest extends Specification {
 
     private DNAVerifier verifier = Mock(DNAVerifier)
 
-    private DnaVerificationController controller = new DnaVerificationController(verifier)
+    private DnaTypeRepository repository = Mock(DnaTypeRepository)
+
+    private DnaVerificationController controller = new DnaVerificationController(verifier, repository)
 
     @Test
     void "Test mutant service response response"() {
