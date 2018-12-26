@@ -6,7 +6,7 @@ import org.junit.Test
 import org.springframework.http.HttpStatus
 import spock.lang.Specification
 
-class DnaVerificationControllerTest extends Specification {
+class DnaVerificationControllerSpockTest extends Specification {
 
     private DNAVerifier verifier = Mock(DNAVerifier)
 
