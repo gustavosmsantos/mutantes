@@ -3,6 +3,7 @@ plugins {
     id 'groovy'
     id 'jacoco'
     id "io.spring.dependency-management" version "1.0.6.RELEASE"
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
 }
 
 repositories {
@@ -45,4 +46,8 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/reports/jacocoTest")
     }
+}
+
+bootJar {
+    mainClassName = 'com.meli.mutantes.Application'
 }
