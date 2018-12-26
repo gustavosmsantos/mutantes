@@ -11,13 +11,13 @@ inicializa o serviço na porta 8080.
 
 - \[POST\] `/mutant`: Verifica se uma sequência de DNA informada caracteriza um mutante. Em caso positivo, a API retorna o status code 200, e em caso negativo retorna o status code 403.
 
-Exemplo de payload:
+    Exemplo de payload:
 
-```javascript
-    {
-        "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
-    }
-```
+    ```javascript
+        {
+            "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+        }
+    ```
 
-Response:
-200 (OK)
+    Response:
+    200 (OK)
