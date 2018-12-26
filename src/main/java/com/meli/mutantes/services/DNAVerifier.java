@@ -34,7 +34,7 @@ public class DNAVerifier {
         if (length < MUTANT_SEQUENCE_LENGTH) {
             return false;
         }
-        return !Arrays.stream(dna).anyMatch(s -> s.length() != length);
+        return Arrays.stream(dna).noneMatch(s -> s.length() != length);
     }
 
     private int countSequences(String line) {
