@@ -14,8 +14,11 @@ import javax.validation.Valid;
 @RestController
 public class DnaVerificationController {
 
-    @Autowired
     private DNAVerifier verifier;
+
+    public DnaVerificationController(@Autowired DNAVerifier verifier) {
+        this.verifier = verifier;
+    }
 
     @PostMapping("/mutant")
     public ResponseEntity<Void> checkMutant(@Valid @RequestBody DnaVerificationRequest request) {

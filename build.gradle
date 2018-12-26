@@ -16,8 +16,6 @@ dependencyManagement {
 }
 
 dependencies {
-
-
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 
     testCompile 'org.codehaus.groovy:groovy-all:2.5.4'

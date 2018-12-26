@@ -5,15 +5,14 @@ import java.util.List;
 
 public class DnaVerificationRequest {
 
-    @NotNull
+    public DnaVerificationRequest(@NotNull List<String> dna) {
+        this.dna = dna;
+    }
+
     private List<String> dna;
 
     public List<String> getDna() {
         return dna;
-    }
-
-    public void setDna(List<String> dna) {
-        this.dna = dna;
     }
 
 }

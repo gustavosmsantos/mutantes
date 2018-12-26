@@ -1,7 +1,10 @@
 package com.meli.mutantes.services
 
+
 import org.junit.Test
 import spock.lang.Specification
+
+import static com.meli.mutantes.TestUtils.convertMutantInput
 
 class DnaVerifierTest extends Specification {
 
@@ -18,7 +21,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        dnaVerifier.isMutant(getDnaArray(dna))
+        dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -32,7 +35,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        !dnaVerifier.isMutant(getDnaArray(dna))
+        !dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -46,7 +49,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        dnaVerifier.isMutant(getDnaArray(dna))
+        dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -60,7 +63,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        !dnaVerifier.isMutant(getDnaArray(dna))
+        !dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -74,7 +77,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        dnaVerifier.isMutant(getDnaArray(dna))
+        dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -88,7 +91,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        !dnaVerifier.isMutant(getDnaArray(dna))
+        !dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -102,7 +105,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        dnaVerifier.isMutant(getDnaArray(dna))
+        dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -116,7 +119,7 @@ class DnaVerifierTest extends Specification {
                     ['T', 'C', 'A', 'C', 'T', 'G'] ]
 
         expect:
-        !dnaVerifier.isMutant(getDnaArray(dna))
+        !dnaVerifier.isMutant(convertMutantInput(dna))
     }
 
     @Test
@@ -137,10 +140,6 @@ class DnaVerifierTest extends Specification {
         ["ATCG", "AGCA", "CGC", "CGTC"]   | _
         ["ATCG", "AGCAA", "CGTC", "CGTC"] | _
 
-    }
-
-    static String[] getDnaArray(List<List<String>> dna) {
-        dna.collect { it.join("") }.toArray(new String[0])
     }
 
 }
